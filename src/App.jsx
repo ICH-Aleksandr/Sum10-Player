@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div>
-      <h1>app</h1>
+      <h1>Player</h1>
     </div>
   );
 }
