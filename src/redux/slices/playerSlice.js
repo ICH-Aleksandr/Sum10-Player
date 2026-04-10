@@ -14,7 +14,25 @@ const initialState = {
 const playerSlice = createSlice({
   name: "player",
   initialState,
-  reducers: {},
+  reducers: {
+    playPause: (state) => {
+      state.isPlaying = !state.isPlaying;
+    },
+    setTime: (state, action) => {
+      const seconds = action.payload;
+      state.currentTime = Math.min(Math.max(0, seconds), state.maxTime);
+    },
+    changeVolume: (state, action) => {
+      const newVolume = Math.min(Math.max(0, action.payload), 100);
+      state.volume = newVolume;
+
+      if (newVolume === 0) {
+        state.isMuted = true;
+      } else if (state.isMuted) {
+        state.isMuted = false;
+      }
+    },
+  },
 });
 
 export default playerSlice.reducer;
